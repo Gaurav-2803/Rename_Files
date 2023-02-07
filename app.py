@@ -120,7 +120,7 @@ class window_UI():
 
     # Check_Season/Episode_No.
     @staticmethod
-    def check_sea_ep(self, file, regex):
+    def check_sea_ep(file, regex):
         try:
             string_SorE = (re.search(regex, file)).group(0)
             num_string = (re.search(r"[\d]+", string_SorE)).group(0)
@@ -132,7 +132,7 @@ class window_UI():
 
     # Check_Extenstion
     @staticmethod
-    def chk_ext(self, file):
+    def chk_ext(file):
         extenstion = ""
         for i in range(len(file)-1, -1, -1):
             if file[i] != ".":
