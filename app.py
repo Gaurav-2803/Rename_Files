@@ -119,6 +119,7 @@ class window_UI():
         window.destroy()
 
     # Check_Season/Episode_No.
+    @staticmethod
     def check_sea_ep(self, file, regex):
         try:
             string_SorE = (re.search(regex, file)).group(0)
@@ -130,6 +131,7 @@ class window_UI():
             print("Filename not found in Regex")
 
     # Check_Extenstion
+    @staticmethod
     def chk_ext(self, file):
         extenstion = ""
         for i in range(len(file)-1, -1, -1):
