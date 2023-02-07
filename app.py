@@ -2,8 +2,8 @@ from tkinter import *
 from tkinter import filedialog
 from PIL import Image, ImageTk
 import os
-import data
 import time
+import re
 
 
 class window_UI(object):
@@ -94,13 +94,15 @@ class window_UI(object):
         self.files_list = os.listdir()
         for i in range(len(self.files_list)):
             self.old_file_name = self.files_list[i]
+            season_regex = r"([Ss][\d]+)"
+            episode_regex = r"([Ee][\d]+)"
             self.season = self.check_sea_ep(
-                self.old_file_name, data.season_list)
+                self.old_file_name, season_regex)
             self.episode = self.check_sea_ep(
-                self.old_file_name, data.episode_list)
+                self.old_file_name, episode_regex)
             if self.season and self.episode:
                 self.extenstion = self.chk_ext(self.old_file_name)
-                self.new_file_name = f'{self.series_name} {self.season}{self.episode} {self.extenstion}'
+                self.new_file_name = f'{self.series_name} S{self.season}E{self.episode} {self.extenstion}'
                 os.system(f'ren "{self.old_file_name}" "{self.new_file_name}"')
                 print(
                     f"\n============================================\nName Changed from -> {self.old_file_name} to -> {self.new_file_name}\n============================================")
@@ -116,11 +118,16 @@ class window_UI(object):
         time.sleep(4)
         window.destroy()
 
-    # Check_Season_No.
-    def check_sea_ep(self, file, array):
-        for i in range(len(array)):
-            if array[i] in file:
-                return array[i]
+    # Check_Season/Episode_No.
+    def check_sea_ep(self, file, regex):
+        try:
+            string_SorE = (re.search(regex, file)).group(0)
+            num_string = (re.search(r"[\d]+", string_SorE)).group(0)
+            num_string = f'0{num_string}' if len(
+                str(num_string)) == 1 and int(num_string) < 10 else num_string
+            return num_string
+        except:
+            print("Filename not found in Regex")
 
     # Check_Extenstion
     def chk_ext(self, file):
