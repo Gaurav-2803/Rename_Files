@@ -129,6 +129,7 @@ class window_UI():
             return num_string
         except:
             print("Filename not found in Regex")
+            return None
 
     # Check_Extenstion
     @staticmethod
