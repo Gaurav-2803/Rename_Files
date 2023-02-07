@@ -92,8 +92,8 @@ class window_UI(object):
         os.chdir(self.folder_name)
         os.getcwd()
         self.files_list = os.listdir()
-        for i in range(len(self.files_list)):
-            self.old_file_name = self.files_list[i]
+        for i, item in enumerate(self.files_list):
+            self.old_file_name = item
             season_regex = r"([Ss][\d]+)"
             episode_regex = r"([Ee][\d]+)"
             self.season = self.check_sea_ep(
