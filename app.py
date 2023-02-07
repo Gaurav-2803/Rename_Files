@@ -2,7 +2,6 @@ from tkinter import *
 from tkinter import filedialog
 from PIL import Image, ImageTk
 import os
-import time
 import re
 
 
@@ -115,8 +114,6 @@ class window_UI():
             bg="Green", fg="White"
         )
         self.result_label.place(x=200, y=145)
-        time.sleep(4)
-        window.destroy()
 
     # Check_Season/Episode_No.
     @staticmethod
