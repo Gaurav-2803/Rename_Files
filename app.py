@@ -6,7 +6,7 @@ import time
 import re
 
 
-class window_UI(object):
+class window_UI():
     def setupUi(self, window):
 
         # Window Position
